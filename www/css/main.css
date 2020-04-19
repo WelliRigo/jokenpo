@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+html { font-size: calc(1em + 1vw); }
+body{
+	background: url("../img/fundo.png");
+}
+.vermelho{
+	color: rgb(193,39,45);
+}
+.azul{
+	color: rgb(0,113,188)
+}
+
+/* REGRA -------------*/
+section.regra h1{
+	background: url("../img/topo1.png") no-repeat center;
+	background-size: 80vw 14vh;
+	text-align: center;
+	font-size: 4.5em;
+	font-weight: bold;
+	font-family: 'Indie Flower', cursive;
+	margin-top: 3vh;
+	padding: 4vh 0;
+	color: white;
+}
+section.regra ul{
+	display: flex;
+	flex-wrap: wrap;
+}
+section.regra ul li{
+	width: 15vw;
+}
+section.regra ul li.esquerda, section.regra ul li.direita{
+	width: 35vw;
+}
+section.regra ul li img{
+	width: 80%;
+	padding-top: 6.5vh;
+}
+section.regra ul li.esquerda img{
+	transform: rotate(90deg) rotateY(180deg);
+	width: 100%;
+	padding-top: 0;
+}
+section.regra ul li.direita img{
+	transform: rotate(270deg);
+	width: 100%;
+	padding-top: 0;
+}
+section.regra button{
+	border: none;
+	background: url("../img/baixo.png") no-repeat center center;
+	background-size: 80vw 16vh;
+	width: 90vw;
+	height: 14.3vh;
+	margin: 0 5vw 0 5vw;
+	font-size: 3.2em;
+	font-family: 'Roboto Slab', serif;
+	text-shadow: 2px 2px rgba(0,0,0, 0.15);
+	font-weight: bold;
+	color: white;
+	bottom: 0;
+}
+
+/* ESCOLHA -------------*/
+section.escolha{display: none}
+
+section.escolha h1{
+	background: url("../img/topo1.png") no-repeat center;
+	background-size: 80vw 14vh;
+	text-align: center;
+	font-size: 3em;
+	font-weight: bold;
+	font-family: 'Roboto Slab', serif;
+	text-shadow: 2px 2px rgba(0,0,0, 0.15);
+	font-weight: bold;
+	margin-top: 3vh;
+	padding: 7vh 0;
+	color: white;
+}
+section.escolha ul{
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 10vh;
+	width: 100vw;
+}
+section.escolha ul li{
+	background: rgb(252,238,33);
+	width: 35vw;
+	margin-top: 5vh;
+}
+section.escolha ul li.tesoura{
+	margin-right: 10vw;
+}
+section.escolha ul li img{
+	width: 18vh;
+	padding-top: 1vh;
+}
+section.escolha ul li p{
+	font-size: 1.1em;
+	font-family: 'Roboto Slab', serif;
+	color: white;
+	padding: 2vw;
+}
+
+/* DISPUTA ===========*/
+/*topo*/
+section.disputa{
+	display: none;
+}
+div.mao-topo{
+	position: relative;
+	height: 40vh;
+}
+section.disputa div.mao-topo div.fundo{
+	background: url("../img/topo2.png") no-repeat center center;
+	background-size: 100vw 15vh;
+	height: 14vh;
+	width: 100vw;
+	position: absolute;
+	top: -40;
+	z-index: 10;
+}
+section.disputa div.mao-topo div.mao{
+	background: url("../img/vermelho.png") no-repeat center center;
+	background-size: 70vw 30vh;
+	height: 30vh;
+	width: 100vw;
+	position: absolute;
+	top: -40vh;
+	z-index: 1;
+}
+section.disputa div.mao-topo div.mao img{
+	position: absolute;
+	transform: rotate(180deg);
+	top: 0vh;
+	width: 60vw;
+	left: 20vw;
+}
+/*TEXTO DE CENTRO*/
+section.disputa h1{
+	height: 20vh;
+	text-align: center;
+	background: url("../img/topo1.png") no-repeat center center;
+	background-size: 65vw 12vh;
+	width: 100vw;
+	font-family: "Roboto slab";
+	line-height: 18vh;
+	color: white;
+  	text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
+	font-weight: bold;
+	font-size: 5em;
+}
+section.disputa h1.mensagem{
+	display: none;
+	font-size: 3.7em;
+}
+
+/*Base*/
+div.mao-base{
+	position: relative;
+	height: 40vh;
+}
+section.disputa div.mao-base div.fundo{
+	background: url("../img/baixo2.png") no-repeat center center;
+	background-size: 100vw 14vh;
+	height: 14vh;
+	width: 100vw;
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+}
+section.disputa div.mao-base div.mao{
+	background: url("../img/azul-op1.png") no-repeat center center;
+	background-size: 70vw 30vh;
+	height: 30vh;
+	width: 100vw;
+	position: absolute;
+	bottom: -40vh;
+	z-index: 1;
+}
+section.disputa div.mao-base div.mao img{
+	position: absolute;
+	bottom: 4.5vh;
+	width: 60vw;
+	left: 20vw;
+}

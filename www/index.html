@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Jokenpô</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <section> 
+  	<section class="regra">
+  		<h1><span class="vermelho">Jo</span>ken<span class="azul">po</span></h1>
+  		<ul>
+  			<li class="esquerda"><img src="img/mao-pedra.png"></li>
+  			<li><img src="img/feliz.png"></li>
+  			<li><img src="img/triste.png"></li>
+  			<li class="direita"><img src="img/mao-tesoura.png"></li>
+
+  			<li class="esquerda"><img src="img/mao-papel.png"></li>
+  			<li><img src="img/feliz.png"></li>
+  			<li><img src="img/triste.png"></li>
+  			<li class="direita"><img src="img/mao-pedra.png"></li>
+
+  			<li class="esquerda"><img src="img/mao-tesoura.png"></li>
+  			<li><img src="img/feliz.png"></li>
+  			<li><img src="img/triste.png"></li>
+  			<li class="direita"><img src="img/mao-papel.png"></li>
+  		</ul>
+  		<button type="button">INICIAR</button>
+  	</section>
+
+    <section class="escolha">
+      <h1>ESCOLHA</h1>
+      <ul>
+        <li class="tesoura">
+          <img src="img/mao-tesoura.png">
+          <p>TESOURA</p>
+        </li>
+        <li class="papel">
+          <img src="img/mao-papel.png">
+          <p>PAPEL</p>
+        </li> 
+        <li class="pedra">
+          <img src="img/mao-pedra.png">
+          <p>PEDRA</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="disputa">
+      <div class="mao-topo">
+        <div class="fundo"></div>
+        <div class="mao">
+          <img src="img/mao-tesoura.png">
+        </div>
+      </div>
+
+      <div>
+        
+      </div>
+
+      <h1 class="placar"><span class="azul">0</span> x <span class="vermelho">0</span></h1>
+      <h1 class="mensagem">VITÓRIA</h1>
+
+      <div class="mao-base">
+        <div class="fundo"></div>
+        <div class="mao">
+          <img src="img/mao-pedra.png">
+        </div>
+      </div>
+
+    </section>
+  </section>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script>
+  var iniciar = $("button");
+  var pedra = $(".pedra");
+  var papel = $(".papel");
+  var tesoura = $(".tesoura");
+  var placarUser = $(".disputa h1.placar span.azul");
+  var placarPc =  $(".disputa h1.placar span.vermelho");
+
+  var escolhaUser = "";
+
+  iniciar.on("click", function(){
+    $(".regra").css("display","none");
+    $(".escolha").css("display","block");
+
+    $(".disputa h1.placar").css("display","block");
+    $(".disputa h1.mensagem").css("display","none");
+  })
+
+  pedra.on("click", function(){
+    escolhaUser = "pedra";
+    $( ".mao-base .mao img" ).attr( "src", "img/mao-pedra.png" );
+    disputar();
+  })
+  papel.on("click", function(){
+    escolhaUser = "papel";
+    $( ".mao-base .mao img" ).attr( "src", "img/mao-papel.png" );
+    disputar();
+  })
+  tesoura.on("click", function(){
+    escolhaUser = "tesoura";
+    $( ".mao-base .mao img" ).attr( "src", "img/mao-tesoura.png" );
+    disputar();
+  })
+
+  function disputar(){
+    $(".escolha").css("display","none");
+    $(".disputa").css("display","block");
+
+    numeroSorteado = Math.floor((Math.random() * 3) + 1);
+
+    if (numeroSorteado == 1) { /*PEDRA*/
+      $( ".mao-topo .mao img" ).attr( "src", "img/mao-pedra.png" );
+      switch (escolhaUser){ 
+        case "papel":
+          placarUser.text(parseInt(placarUser.text()) + 1);
+          break;
+        case "tesoura":
+          placarPc.text(parseInt(placarPc.text()) + 1);
+      }
+    } else if(numeroSorteado == 2){ /*PAPEL*/
+      $( ".mao-topo .mao img" ).attr( "src", "img/mao-papel.png" );
+      switch (escolhaUser){
+        case "pedra":
+          placarPc.text(parseInt(placarPc.text()) + 1);
+          break;
+        case "tesoura":
+          placarUser.text(parseInt(placarUser.text()) + 1);
+      }
+    } else { /*TESOURA*/
+      $( ".mao-topo .mao img" ).attr( "src", "img/mao-tesoura.png" );
+      switch (escolhaUser){
+        case "pedra":
+          placarUser.text(parseInt(placarUser.text()) + 1);
+          break;
+        case "papel":
+          placarPc.text(parseInt(placarPc.text())  + 1);
+          break;  
+      }
+    }
+
+    $(".disputa .mao-topo .mao").animate({"top":"7"}, 500);
+    $(".disputa .mao-base .mao").animate({"bottom":"0"},500);
+
+    if (placarUser.text() == 3) {
+     $(".disputa h1.placar").css("display","none");
+     $(".disputa h1.mensagem").css("display","block");
+     $(".disputa h1.mensagem").text("VITÓRIA!");
+      setTimeout(function(){
+        placarPc.text(0);
+        placarUser.text(0);
+        $(".disputa").css("display","none");
+        voltarPosicao();
+        $(".regra").css("display","block");
+      },4000)
+    } else if(placarPc.text() == 3){
+     $(".disputa h1.placar").css("display","none");
+     $(".disputa h1.mensagem").css("display","block");
+      $(".disputa h1.mensagem").text("DERROTA!");
+      setTimeout(function(){
+        placarPc.text(0);
+        placarUser.text(0);
+        $(".disputa").css("display","none");
+        voltarPosicao();
+        $(".regra").css("display","block");
+      },4000)
+    } else {
+      setTimeout(function(){
+        $(".disputa").css("display","none");
+        $(".escolha").css("display","block");
+        voltarPosicao();
+      },3000)
+    }
+  }
+
+  function voltarPosicao(){
+      $(".disputa .mao-topo .mao").css("top","-40vh");
+      $(".disputa .mao-base .mao").css("bottom","-40vh");
+  }
+
+
+
+</script>
+</body>
+</html>
